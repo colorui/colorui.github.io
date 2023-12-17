@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>colorui</title>
-  <meta name="description" content="Test out colours for your User Interface design.">
+  <meta name="description" content="Test out colours for your User Interface design and branding.">
   <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
   <script src='tailwind.js'></script>
   <style>
@@ -21,52 +21,80 @@
 
  <div class="flex justify-between mt-4">
   <div class="flex">
-    <input type="text" id="colorInput" class="bg-gray-100 p-2" placeholder="Enter Hex Code">
-    <button onclick="renderColor()" class="bg-gray-200 p-2 uppercase">Go</button>
+    <input type="text" id="colorInput3" class="bg-gray-100 p-2" placeholder="Enter Hex Code">
+    <button onclick="renderColor(2)" class="bg-gray-200 p-2 uppercase">Go</button>
   </div>
 
   <button onclick="toggleDark()" id="toggler" class="text-white p-2"></button>
  </div>
 
+ <!-- ROW 1 -->
   <div class="flex flex-col mt-4">
-    <div class="flex px-2 items-center justify-between h-24 box" id="colorDiv">
-      <p id="contrast-light" class="text-white"></p>
-      <p id="contrast-dark" class="text-black"></p>
+    <div class="flex px-2 items-center justify-between h-24 box" id="colorDiv3">
+      <p class="font-bold text-[48px]" id="colThreeA">Brand</p>
+      <p class="font-bold text-[36px]" id="colThreeB">Identity</p>
     </div>
-    <h1 class="text-7xl" id="colorHeading">HEADLINE</h1>
-    <p class="text-xl" id="colorParagraph">This is paragraph text, it is really super awesome and makes a lot of sense.</p>
+    
+    <div class="flex px-2 items-center justify-between h-24"> 
+      <h1 class="text-5xl -ml-2 -mt-4" id="colorHeading3">UPPERCASE</h1>
+      
+      <div id="colorBg3" class="-mt-4 flex justify-between p-2 w-32 h-10">
+        <p id="contrast-light3" class="text-white"></p>
+        <p id="contrast-dark3" class="text-black"></p>
+      </div>
+    </div>
+
+    <p class="text-xl -mt-6" id="colorParagraph3">Pioneer the future and eat a lot of fruit. Dress up in a suit, with a boot.</p>
   </div>
  
 
  <!-- ROW 2 -->
  <div class="flex mt-4">
   <input type="text" id="colorInput2" class="bg-gray-100 p-2" placeholder="Enter Hex Code">
-  <button onclick="renderColor2()" class="bg-gray-200 p-2 uppercase">Go</button>
+  <button onclick="renderColor(1)" class="bg-gray-200 p-2 uppercase">Go</button>
  </div>
 
   <div class="flex flex-col mt-4">
     <div class="flex px-2 items-center justify-between h-24 box" id="colorDiv2">
-      <p id="contrast-light2" class="text-white"></p>
-      <p id="contrast-dark2" class="text-black"></p>
+      <p class="font-bold text-[48px]" id="colTwoA">Brand</p>
+      <p class="font-bold text-[36px]" id="colTwoB">Identity</p>
     </div>
-    <h1 class="text-7xl" id="colorHeading2">HEADLINE</h1>
-    <p class="text-xl" id="colorParagraph2">This is paragraph text, it is really super awesome and makes a lot of sense.</p>
+    
+    <div class="flex px-2 items-center justify-between h-24"> 
+      <h1 class="text-5xl -ml-2 -mt-4" id="colorHeading2">UPPERCASE</h1>
+      
+      <div id="colorBg2" class="-mt-4 flex justify-between p-2 w-32 h-10">
+        <p id="contrast-light2" class="text-white"></p>
+        <p id="contrast-dark2" class="text-black"></p>
+      </div>
+    </div>
+
+    <p class="text-xl -mt-6" id="colorParagraph2">Pioneer the future and eat a lot of fruit. Dress up in a suit, with a boot.</p>
   </div>
 
 
 <!-- ROW 3 -->
  <div class="flex mt-4">
-  <input type="text" id="colorInput3" class="bg-gray-100 p-2" placeholder="Enter Hex Code">
-  <button onclick="renderColor3()" class="bg-gray-200 p-2 uppercase">Go</button>
+  <input type="text" id="colorInput1" class="bg-gray-100 p-2" placeholder="Enter Hex Code">
+  <button onclick="renderColor(0)" class="bg-gray-200 p-2 uppercase">Go</button>
  </div>
 
   <div class="flex flex-col mt-4">
-    <div class="flex px-2 items-center justify-between h-24 box" id="colorDiv3">
-      <p id="contrast-light3" class="text-white"></p>
-      <p id="contrast-dark3" class="text-black"></p>
+    <div class="flex px-2 items-center justify-between h-24 box" id="colorDiv1">
+      <p class="font-bold text-[48px]" id="colOneA">Brand</p>
+      <p class="font-bold text-[36px]" id="colOneB">Identity</p>
     </div>
-    <h1 class="text-7xl" id="colorHeading3">HEADLINE</h1>
-    <p class="text-xl" id="colorParagraph3">This is paragraph text, it is really super awesome and makes a lot of sense.</p>
+    
+    <div class="flex px-2 items-center justify-between h-24"> 
+      <h1 class="text-5xl -ml-2 -mt-4" id="colorHeading1">UPPERCASE</h1>
+      
+      <div id="colorBg1" class="-mt-4 flex justify-between p-2 w-32 h-10">
+        <p id="contrast-light1" class="text-white"></p>
+        <p id="contrast-dark1" class="text-black"></p>
+      </div>
+    </div>
+
+    <p class="text-xl -mt-6" id="colorParagraph1">Pioneer the future and eat a lot of fruit. Dress up in a suit, with a boot.</p>
   </div>
 <!--  -->
 <!--  -->
@@ -87,62 +115,61 @@
       body.style.background === "black" ? document.getElementById('toggler').style.background = "white" : document.getElementById('toggler').style.background = "black"
       body.style.background === "black" ? document.getElementById('toggler').style.color = "black" : document.getElementById('toggler').style.color = "white"
     }
+    
+    
+    let hexCodes = [undefined, undefined, undefined];
 
+    function renderColor(index) {
+      const inputId = `colorInput${index + 1}`;
+      const boxId = `colorDiv${index + 1}`;
+      const lightTextId = `contrast-light${index + 1}`;
+      const darkTextId = `contrast-dark${index + 1}`;
+      const headingId = `colorHeading${index + 1}`;
+      const paragraphId = `colorParagraph${index + 1}`;
+      const bgId = `colorBg${index + 1}`;
 
-    function renderColor() {
-      let hexCode = document.getElementById('colorInput').value
-      hexCode = hexCode.startsWith("#") ? hexCode : `#${hexCode}`
+      hexCodes[index] = document.getElementById(inputId).value;
+      hexCodes[index] = hexCodes[index].startsWith("#") ? hexCodes[index] : `#${hexCodes[index]}`;
 
-        if (/^#[0-9A-Fa-f]{6}$/.test(hexCode)) {
-        const box = document.getElementById('colorDiv')
-          box.style.backgroundColor = hexCode
-          box.classList.remove("box")
+      if (/^#[0-9A-Fa-f]{6}$/.test(hexCodes[index])) {
+        const box = document.getElementById(boxId);
+        box.style.backgroundColor = hexCodes[index];
+        box.classList.remove("box");
 
-        document.getElementById('colorHeading').style.color = hexCode
-        document.getElementById('colorParagraph').style.color = hexCode
+        document.getElementById(lightTextId).innerText = "white";
+        document.getElementById(darkTextId).innerText = "black";
 
-        document.getElementById("contrast-light").innerText = "This is white text"
-        document.getElementById("contrast-dark").innerText = "This is black text"
+        document.getElementById(headingId).style.color = hexCodes[index];
+        document.getElementById(paragraphId).style.color = hexCodes[index];
+
+        document.getElementById(bgId).style.background = hexCodes[index];
+
+        const currentColOneAId = `colOneA`;
+        const currentColOneBId = `colOneB`;
+        const currentColTwoAId = `colTwoA`;
+        const currentColTwoBId = `colTwoB`;
+        const currentColThreeAId = `colThreeA`;
+        const currentColThreeBId = `colThreeB`;
+
+        // ISSUES
+        //  ideally we want two colours as well as three colours to render on input.
+        //  currently it takes three colours inputted top to bottom to render correctly. 
+        //  ^^^ as in the last input button renders correctly the other two do not.
+        document.getElementById(currentColThreeAId).style.color = hexCodes[(index)];
+        document.getElementById(currentColThreeBId).style.color = hexCodes[(index + 1)];
+        
+        document.getElementById(currentColTwoAId).style.color = hexCodes[(index + 2)];
+        document.getElementById(currentColTwoBId).style.color = hexCodes[(index)];
+
+        document.getElementById(currentColOneAId).style.color = hexCodes[(index + 1)];
+        document.getElementById(currentColOneBId).style.color = hexCodes[(index + 2)];
+  
+
       } else {
-        alert('Invalid Hex Code. Please enter a valid 6-digit hex code (e.g., #RRGGBB).')
+        alert('Invalid Hex Code. Please enter a valid 6-digit hex code (e.g., #RRGGBB).');
       }
     }
-    function renderColor2() {
-      let hexCode = document.getElementById('colorInput2').value
-      hexCode = hexCode.startsWith("#") ? hexCode : `#${hexCode}`
 
-        if (/^#[0-9A-Fa-f]{6}$/.test(hexCode)) {
-        const box = document.getElementById('colorDiv2')
-          box.style.backgroundColor = hexCode
-          box.classList.remove("box")
-
-        document.getElementById('colorHeading2').style.color = hexCode
-        document.getElementById('colorParagraph2').style.color = hexCode
-
-        document.getElementById("contrast-light2").innerText = "This is white text"
-        document.getElementById("contrast-dark2").innerText = "This is black text"
-      } else {
-        alert('Invalid Hex Code. Please enter a valid 6-digit hex code (e.g., #RRGGBB).')
-      }
-    }
-    function renderColor3() {
-      let hexCode = document.getElementById('colorInput3').value
-      hexCode = hexCode.startsWith("#") ? hexCode : `#${hexCode}`
-
-        if (/^#[0-9A-Fa-f]{6}$/.test(hexCode)) {
-        const box = document.getElementById('colorDiv3')
-          box.style.backgroundColor = hexCode
-          box.classList.remove("box")
-
-        document.getElementById('colorHeading3').style.color = hexCode
-        document.getElementById('colorParagraph3').style.color = hexCode
-
-        document.getElementById("contrast-light3").innerText = "This is white text"
-        document.getElementById("contrast-dark3").innerText = "This is black text"
-      } else {
-        alert('Invalid Hex Code. Please enter a valid 6-digit hex code (e.g., #RRGGBB).')
-      }
-    }
   </script>
 </body>
 </html>
