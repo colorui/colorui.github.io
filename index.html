@@ -14,14 +14,59 @@
   .box{
     border: 1px solid gray;
   }
+  .hideError{
+    display: none;
+  }
+  .showError{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    height: 110vh;
+    width: 100vw;
+    background: #f9f9f9;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 300ms;
+  }
+  @keyframes fadeIn {
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+  }
+
+  .modal{
+    opacity: 1;
+    transition: opacity 500ms;
+    animation: fadeOut 500ms ease-out 4s forwards;
+  }
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+    }
+  }
   </style>
 </head>
 <body>
+
+<!-- ERROR MODAL -->
+<div id="error" class="hideError -mt-4">
+  <div id="modal" class="-mt-[25vh] text-center">
+    <p class="text-4xl md:text-7xl text-red-500 mb-2 md:mb-1">Invalid Hex Code</p>
+    <p class="text-md md:text-2xl text-green-700 mb-1">Please enter a valid 3, 6 or 8 digit hex value</p>
+    <p class="text-lg md:text-2xl text-slate-900">Examples: #111, #aebcdd, #5a5c5611</p>
+  </div>
+</div>
+
+<!-- UI -->
 <div class="max-w-3xl mx-auto px-1 mb-[80px]">
 
- <div class="flex justify-between mt-4">
+ <div class="flex justify-between mt-2 md:mt-4">
   <div class="flex">
-    <input type="text" id="colorInput3" class="bg-gray-100 p-2 w-36 mr-1" placeholder="Enter Hex Code" autofocus>
+    <input type="text" maxlength="8" id="colorInput3" class="bg-gray-100 p-2 w-36 mr-1" placeholder="Enter Hex Code" autofocus>
     <button onclick="renderColor(2)" class="bg-gray-200 p-2 rounded-full uppercase">Go</button>
   </div>
 
@@ -30,27 +75,28 @@
 
  <!-- ROW 1 -->
   <div class="flex flex-col mt-4">
+
     <div class="flex px-2 items-center justify-between h-24 box" id="colorDiv3">
       <p class="font-bold text-[48px]" id="colThreeA">Brand</p>
       <p class="font-bold text-[36px]" id="colThreeB">Identity</p>
     </div>
     
     <div class="flex px-2 items-center justify-between h-24"> 
-      <h1 class="text-5xl -ml-2 -mt-4" id="colorHeading3">UPPERCASE</h1>
+      <h1 class="text-5xl -ml-2 -mt-5" id="colorHeading3">UPPERCASE</h1>
       
-      <div id="colorBg3" class="-mt-4 flex justify-between p-2 w-32 h-10">
+      <div id="colorBg3" class="-mt-5 flex justify-between p-2 w-32 h-10">
         <p id="contrast-light3" class="text-white"></p>
         <p id="contrast-dark3" class="text-black"></p>
       </div>
     </div>
 
-    <p class="text-xl -mt-6 leading-6" id="colorParagraph3">Pioneer the future and eat a lot of fruit. Dress up in a suit, with a boot.</p>
+    <p class="text-xl -mt-7 leading-6" id="colorParagraph3">Pioneer the future and eat a lot of fruit. Dress up in a suit, with a boot.</p>
   </div>
  
 
  <!-- ROW 2 -->
- <div class="flex mt-4">
-  <input type="text" id="colorInput2" class="bg-gray-100 p-2 w-36 mr-1" placeholder="Enter Hex Code">
+ <div class="flex mt-5">
+  <input type="text" maxlength="8" id="colorInput2" class="bg-gray-100 p-2 w-36 mr-1" placeholder="Enter Hex Code">
   <button onclick="renderColor(1)" class="bg-gray-200 p-2 uppercase rounded-full">Go</button>
  </div>
 
@@ -61,21 +107,21 @@
     </div>
     
     <div class="flex px-2 items-center justify-between h-24"> 
-      <h1 class="text-5xl -ml-2 -mt-4" id="colorHeading2">UPPERCASE</h1>
+      <h1 class="text-5xl -ml-2 -mt-5" id="colorHeading2">UPPERCASE</h1>
       
-      <div id="colorBg2" class="-mt-4 flex justify-between p-2 w-32 h-10">
+      <div id="colorBg2" class="-mt-5 flex justify-between p-2 w-32 h-10">
         <p id="contrast-light2" class="text-white"></p>
         <p id="contrast-dark2" class="text-black"></p>
       </div>
     </div>
 
-    <p class="text-xl -mt-6 leading-6" id="colorParagraph2">Pioneer the future and eat a lot of fruit. Dress up in a suit, with a boot.</p>
+    <p class="text-xl -mt-7 leading-6" id="colorParagraph2">Pioneer the future and eat a lot of fruit. Dress up in a suit, with a boot.</p>
   </div>
 
 
 <!-- ROW 3 -->
- <div class="flex mt-4">
-  <input type="text" id="colorInput1" class="bg-gray-100 p-2 w-36 mr-1" placeholder="Enter Hex Code">
+ <div class="flex mt-5">
+  <input type="text" maxlength="8" id="colorInput1" class="bg-gray-100 p-2 w-36 mr-1" placeholder="Enter Hex Code">
   <button onclick="renderColor(0)" class="bg-gray-200 p-2 uppercase rounded-full">Go</button>
  </div>
 
@@ -86,15 +132,15 @@
     </div>
     
     <div class="flex px-2 items-center justify-between h-24"> 
-      <h1 class="text-5xl -ml-2 -mt-4" id="colorHeading1">UPPERCASE</h1>
+      <h1 class="text-5xl -ml-2 -mt-5" id="colorHeading1">UPPERCASE</h1>
       
-      <div id="colorBg1" class="-mt-4 flex justify-between p-2 w-32 h-10">
+      <div id="colorBg1" class="-mt-5 flex justify-between p-2 w-32 h-10">
         <p id="contrast-light1" class="text-white"></p>
         <p id="contrast-dark1" class="text-black"></p>
       </div>
     </div>
 
-    <p class="text-xl -mt-6 leading-6" id="colorParagraph1">Pioneer the future and eat a lot of fruit. Dress up in a suit, with a boot.</p>
+    <p class="text-xl -mt-7 leading-6" id="colorParagraph1">Pioneer the future and eat a lot of fruit. Dress up in a suit, with a boot.</p>
   </div>
 <!--  -->
 <!--  -->
@@ -125,56 +171,70 @@
     }
     
     
-    let hexCodes = [undefined, undefined, undefined];
+    let hexCodes = [undefined, undefined, undefined]
 
     function renderColor(index) {
-      const inputId = `colorInput${index + 1}`;
-      const boxId = `colorDiv${index + 1}`;
-      const lightTextId = `contrast-light${index + 1}`;
-      const darkTextId = `contrast-dark${index + 1}`;
-      const headingId = `colorHeading${index + 1}`;
-      const paragraphId = `colorParagraph${index + 1}`;
-      const bgId = `colorBg${index + 1}`;
+      const inputId = `colorInput${index + 1}`
+      const boxId = `colorDiv${index + 1}`
+      const lightTextId = `contrast-light${index + 1}`
+      const darkTextId = `contrast-dark${index + 1}`
+      const headingId = `colorHeading${index + 1}`
+      const paragraphId = `colorParagraph${index + 1}`
+      const bgId = `colorBg${index + 1}`
 
-      hexCodes[index] = document.getElementById(inputId).value;
-      hexCodes[index] = hexCodes[index].startsWith("#") ? hexCodes[index] : `#${hexCodes[index]}`;
+      hexCodes[index] = document.getElementById(inputId).value
+      hexCodes[index] = hexCodes[index].startsWith("#") ? hexCodes[index] : `#${hexCodes[index]}`
 
-      if (/^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$/.test(hexCodes[index])) {
-        const box = document.getElementById(boxId);
-        box.style.backgroundColor = hexCodes[index];
-        box.classList.remove("box");
+      if (/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/i.test(hexCodes[index])) {
+        const box = document.getElementById(boxId)
+        box.style.backgroundColor = hexCodes[index]
+        box.classList.remove("box")
 
-        document.getElementById(lightTextId).innerText = "white";
-        document.getElementById(darkTextId).innerText = "black";
+        document.getElementById(lightTextId).innerText = "white"
+        document.getElementById(darkTextId).innerText = "black"
 
-        document.getElementById(headingId).style.color = hexCodes[index];
-        document.getElementById(paragraphId).style.color = hexCodes[index];
+        document.getElementById(headingId).style.color = hexCodes[index]
+        document.getElementById(paragraphId).style.color = hexCodes[index]
 
-        document.getElementById(bgId).style.background = hexCodes[index];
+        document.getElementById(bgId).style.background = hexCodes[index]
 
-        const currentColOneAId = `colOneA`;
-        const currentColOneBId = `colOneB`;
-        const currentColTwoAId = `colTwoA`;
-        const currentColTwoBId = `colTwoB`;
-        const currentColThreeAId = `colThreeA`;
-        const currentColThreeBId = `colThreeB`;
+        const currentColOneAId = `colOneA`
+        const currentColOneBId = `colOneB`
+        const currentColTwoAId = `colTwoA`
+        const currentColTwoBId = `colTwoB`
+        const currentColThreeAId = `colThreeA`
+        const currentColThreeBId = `colThreeB`
 
         // ISSUES
         //  ideally we want two colours as well as three colours to render on input.
         //  currently it takes three colours inputted top to bottom to render correctly. 
         //  ^^^ as in the last input button renders correctly the other two do not.
-        document.getElementById(currentColThreeAId).style.color = hexCodes[(index)];
-        document.getElementById(currentColThreeBId).style.color = hexCodes[(index + 1)];
+        document.getElementById(currentColThreeAId).style.color = hexCodes[(index)]
+        document.getElementById(currentColThreeBId).style.color = hexCodes[(index + 1)]
         
-        document.getElementById(currentColTwoAId).style.color = hexCodes[(index + 2)];
-        document.getElementById(currentColTwoBId).style.color = hexCodes[(index)];
+        document.getElementById(currentColTwoAId).style.color = hexCodes[(index + 2)]
+        document.getElementById(currentColTwoBId).style.color = hexCodes[(index)]
 
-        document.getElementById(currentColOneAId).style.color = hexCodes[(index + 1)];
-        document.getElementById(currentColOneBId).style.color = hexCodes[(index + 2)];
-  
+        document.getElementById(currentColOneAId).style.color = hexCodes[(index + 1)]
+        document.getElementById(currentColOneBId).style.color = hexCodes[(index + 2)]
 
       } else {
-        alert('Invalid Hex Code. Please enter a valid 6 or 8 digit hex code (e.g., #RRGGBB, #55555511).');
+        document.body.style.overflowY = "hidden";
+
+        const error = document.getElementById('error');
+        error.classList.remove("hideError");
+        error.classList.add("showError");
+
+        document.getElementById('modal').classList.add("modal")
+        
+        setTimeout(() => {
+          document.body.style.overflowY = "auto";
+
+          error.classList.remove("showError");
+          error.classList.add("hideError");
+          
+          document.getElementById('modal').classList.remove("modal")
+        }, 4400);  
       }
     }
 
