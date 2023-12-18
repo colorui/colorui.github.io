@@ -6,250 +6,61 @@
   <title>colorui</title>
   <meta name="description" content="Test out colours for your User Interface design and branding.">
   <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
-  <script src='tailwind.js'></script>
-  <style>
-  body{
-    background: white;
-    font-family: monospace;
-  }
-  .box{
-    border: 1px solid gray;
-  }
-  .hideError{
-    display: none;
-  }
-  .showError{
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    z-index: 100;
-    height: 110vh;
-    width: 100vw;
-    background: #f9f9f9;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 300ms;
-  }
-  @keyframes fadeIn {
-    from{
-      opacity: 0;
-    }
-    to{
-      opacity: 1;
-    }
-  }
 
-  .modal{
-    opacity: 1;
-    transition: opacity 500ms;
-    animation: fadeOut 500ms ease-out 4s forwards;
-  }
-  @keyframes fadeOut {
-    to {
-      opacity: 0;
-    }
-  }
-  </style>
+  <!-- STYLES -->
+  <script src='tailwind.js'></script>
+  <link rel='stylesheet' href='style.css' />
+
+  <!-- WEB COMPONENTS -->
+  <script type='module' src='ErrorModal.js'></script>
+  <script type='module' src='Input1.js'></script>
+  <script type='module' src='Row1.js'></script>
+  <script type='module' src='Input2.js'></script>
+  <script type='module' src='Row2.js'></script>
+  <script type='module' src='Input3.js'></script>
+  <script type='module' src='Row3.js'></script>
 </head>
 <body>
 
 <!-- ERROR MODAL -->
-<div id="error" class="hideError -mt-4">
-  <div id="modal" class="-mt-[25vh] text-center">
-    <p class="text-4xl md:text-7xl text-red-500 mb-2 md:mb-1">Invalid Hex Code</p>
-    <p class="text-md md:text-2xl text-green-700 mb-1">Please enter a valid 3, 6 or 8 digit hex value</p>
-    <p class="text-lg md:text-2xl text-slate-900">Examples: #111, #aebcdd, #5a5c5611</p>
-  </div>
-</div>
+<Errormodal-component></Errormodal-component>
 
-<!-- UI -->
+
+<!-- CONTAINER -->
 <div class="max-w-3xl mx-auto px-1 mb-[80px]">
 
+
+<!-- ROW 1 -->
+<!-- INPUT 1 && THEME TOGGLER -->
 <div class="flex justify-between mt-2 md:mt-4">
-<div class="flex items-center">
-  <input type="text" maxlength="9" id="colorInput3" class="bg-gray-100 p-2 w-36 mr-1 text-lg placeholder:text-sm" placeholder="Enter Hex Code" autofocus>
-  <button onclick="renderColor(2)" class="font-sans bg-gray-200 p-2 rounded-full uppercase w-10 h-10">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
-    <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" /></svg>
-  </button>
+  <Input1-component></Input1-component>
+
+  <button onclick="toggleDark()" id="toggler" class="text-white p-2 rounded-full w-10 h-10"></button> 
 </div>
+  <Row1-component></Row1-component>
 
-  <button onclick="toggleDark()" id="toggler" class="text-white p-2 rounded-full w-10 h-10"></button>
- </div>
 
- <!-- ROW 1 -->
-  <div class="flex flex-col mt-4">
-
-    <div class="flex px-2 items-center justify-between h-24 box" id="colorDiv3">
-      <p class="font-bold text-[48px]" id="colThreeA">Logo</p>
-      <p class="font-bold text-[36px]" id="colThreeB">Identity</p>
-    </div>
-    
-    <div class="flex px-2 items-center justify-between h-24"> 
-      <h1 class="text-5xl -ml-2 -mt-5" id="colorHeading3">UPPERCASE</h1>
-      
-      <div id="colorBg3" class="font-sans -mt-5 flex justify-between p-2 w-32 h-10">
-        <p id="contrast-light3" class="text-white"></p>
-        <p id="contrast-dark3" class="text-black"></p>
-      </div>
-    </div>
-
-    <p class="text-xl -mt-7 leading-6" id="colorParagraph3">Pioneer the future and eat a lot of fruit. Dress up in a suit, with a boot.</p>
-  </div>
- 
-
- <!-- ROW 2 -->
- <div class="flex items-center mt-5">
-  <input type="text" maxlength="9" id="colorInput2" class="bg-gray-100 p-2 w-36 mr-1 text-lg placeholder:text-sm" placeholder="Enter Hex Code">
-  <button onclick="renderColor(1)" class="font-sans bg-gray-200 p-2 uppercase rounded-full w-10 h-10">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /></svg>
-  </button>
- </div>
-
-  <div class="flex flex-col mt-4">
-    <div class="flex px-2 items-center justify-between h-24 box" id="colorDiv2">
-      <p class="font-bold text-[48px]" id="colTwoA">Logo</p>
-      <p class="font-bold text-[36px]" id="colTwoB">Identity</p>
-    </div>
-    
-    <div class="flex px-2 items-center justify-between h-24"> 
-      <h1 class="text-5xl -ml-2 -mt-5" id="colorHeading2">UPPERCASE</h1>
-      
-      <div id="colorBg2" class="font-sans -mt-5 flex justify-between p-2 w-32 h-10">
-        <p id="contrast-light2" class="text-white"></p>
-        <p id="contrast-dark2" class="text-black"></p>
-      </div>
-    </div>
-
-    <p class="text-xl -mt-7 leading-6" id="colorParagraph2">Pioneer the future and eat a lot of fruit. Dress up in a suit, with a boot.</p>
-  </div>
+<!-- ROW 2 -->
+<Input2-component></Input2-component>
+<Row2-component></Row2-component>
 
 
 <!-- ROW 3 -->
-<div class="flex items-center mt-5">
-  <input type="text" maxlength="9" id="colorInput1" class="bg-gray-100 p-2 w-36 mr-1 text-lg placeholder:text-sm" placeholder="Enter Hex Code">
-  <button onclick="renderColor(0)" class="font-sans bg-gray-200 p-2 uppercase rounded-full w-10 h-10">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-    </svg>
-  </button>
-</div>
+<Input3-component></Input3-component>
+<Row3-component></Row3-component>
 
-  <div class="flex flex-col mt-4">
-    <div class="flex px-2 items-center justify-between h-24 box" id="colorDiv1">
-      <p class="font-bold text-[48px]" id="colOneA">Logo</p>
-      <p class="font-bold text-[36px]" id="colOneB">Identity</p>
-    </div>
-    
-    <div class="flex px-2 items-center justify-between h-24"> 
-      <h1 class="text-5xl -ml-2 -mt-5" id="colorHeading1">UPPERCASE</h1>
-      
-      <div id="colorBg1" class="font-sans -mt-5 flex justify-between p-2 w-32 h-10">
-        <p id="contrast-light1" class="text-white"></p>
-        <p id="contrast-dark1" class="text-black"></p>
-      </div>
-    </div>
 
-    <p class="text-xl -mt-7 leading-6" id="colorParagraph1">Pioneer the future and eat a lot of fruit. Dress up in a suit, with a boot.</p>
-  </div>
-<!--  -->
 <!--  -->
 <!--  -->
 </div><!-- \CONTAINER -->
 <!--  -->
 <!--  -->
+
+
+<!-- LOGIC -->
+<script src='themeToggler.js'></script>
+<script src="renderColor.js"></script>
 <!--  -->
-  <script>
-  
-    document.getElementById('toggler').innerHTML = `<svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-    <path d="M17.8 13.75a1 1 0 0 0-.859-.5A7.488 7.488 0 0 1 10.52 2a1 1 0 0 0 0-.969A1.035 1.035 0 0 0 9.687.5h-.113a9.5 9.5 0 1 0 8.222 14.247 1 1 0 0 0 .004-.997Z"/>
-  </svg>`
-
-    document.getElementById('toggler').style.background = "black"
-    document.getElementById('toggler').style.color = "white"
-    
-    function toggleDark() {
-      const body = document.body
-      body.style.background = body.style.background === "black" ? "white" : "black";
-      body.style.background === "black" ? document.getElementById('toggler').innerHTML = `<svg class="w-6 h-6 text-black sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-      <path d="M10 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-11a1 1 0 0 0 1-1V1a1 1 0 0 0-2 0v2a1 1 0 0 0 1 1Zm0 12a1 1 0 0 0-1 1v2a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1ZM4.343 5.757a1 1 0 0 0 1.414-1.414L4.343 2.929a1 1 0 0 0-1.414 1.414l1.414 1.414Zm11.314 8.486a1 1 0 0 0-1.414 1.414l1.414 1.414a1 1 0 0 0 1.414-1.414l-1.414-1.414ZM4 10a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1Zm15-1h-2a1 1 0 1 0 0 2h2a1 1 0 0 0 0-2ZM4.343 14.243l-1.414 1.414a1 1 0 1 0 1.414 1.414l1.414-1.414a1 1 0 0 0-1.414-1.414ZM14.95 6.05a1 1 0 0 0 .707-.293l1.414-1.414a1 1 0 1 0-1.414-1.414l-1.414 1.414a1 1 0 0 0 .707 1.707Z"/>
-      </svg>` : document.getElementById('toggler').innerHTML = `<svg class="w-6 h-6 text-white moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-      <path d="M17.8 13.75a1 1 0 0 0-.859-.5A7.488 7.488 0 0 1 10.52 2a1 1 0 0 0 0-.969A1.035 1.035 0 0 0 9.687.5h-.113a9.5 9.5 0 1 0 8.222 14.247 1 1 0 0 0 .004-.997Z"/>
-      </svg>`
-      body.style.background === "black" ? document.getElementById('toggler').style.background = "white" : document.getElementById('toggler').style.background = "black"
-      body.style.background === "black" ? document.getElementById('toggler').style.color = "black" : document.getElementById('toggler').style.color = "white"
-    }
-    
-    
-    let hexCodes = [undefined, undefined, undefined]
-
-    function renderColor(index) {
-      const inputId = `colorInput${index + 1}`
-      const boxId = `colorDiv${index + 1}`
-      const lightTextId = `contrast-light${index + 1}`
-      const darkTextId = `contrast-dark${index + 1}`
-      const headingId = `colorHeading${index + 1}`
-      const paragraphId = `colorParagraph${index + 1}`
-      const bgId = `colorBg${index + 1}`
-
-      hexCodes[index] = document.getElementById(inputId).value
-      hexCodes[index] = hexCodes[index].startsWith("#") ? hexCodes[index] : `#${hexCodes[index]}`
-
-      if (/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/i.test(hexCodes[index])) {
-        const box = document.getElementById(boxId)
-        box.style.backgroundColor = hexCodes[index]
-        box.classList.remove("box")
-
-        document.getElementById(lightTextId).innerText = "white"
-        document.getElementById(darkTextId).innerText = "black"
-
-        document.getElementById(headingId).style.color = hexCodes[index]
-        document.getElementById(paragraphId).style.color = hexCodes[index]
-
-        document.getElementById(bgId).style.background = hexCodes[index]
-
-        const currentColOneAId = `colOneA`
-        const currentColOneBId = `colOneB`
-        const currentColTwoAId = `colTwoA`
-        const currentColTwoBId = `colTwoB`
-        const currentColThreeAId = `colThreeA`
-        const currentColThreeBId = `colThreeB`
-
-        // ISSUES
-        //  ideally we want two colours as well as three colours to render on input.
-        //  currently it takes three colours inputted top to bottom to render correctly. 
-        //  ^^^ as in the last input button renders correctly the other two do not.
-        document.getElementById(currentColThreeAId).style.color = hexCodes[(index)]
-        document.getElementById(currentColThreeBId).style.color = hexCodes[(index + 1)]
-        
-        document.getElementById(currentColTwoAId).style.color = hexCodes[(index + 2)]
-        document.getElementById(currentColTwoBId).style.color = hexCodes[(index)]
-
-        document.getElementById(currentColOneAId).style.color = hexCodes[(index + 1)]
-        document.getElementById(currentColOneBId).style.color = hexCodes[(index + 2)]
-
-      } else {
-        document.body.style.overflowY = "hidden";
-
-        const error = document.getElementById('error');
-        error.classList.remove("hideError");
-        error.classList.add("showError");
-
-        document.getElementById('modal').classList.add("modal")
-        
-        setTimeout(() => {
-          document.body.style.overflowY = "auto";
-
-          error.classList.remove("showError");
-          error.classList.add("hideError");
-          
-          document.getElementById('modal').classList.remove("modal")
-        }, 4400);  
-      }
-    }
-
-  </script>
+<!--  -->
 </body>
 </html>
