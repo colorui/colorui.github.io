@@ -4,6 +4,28 @@ body{
     background: white;
     font-family: monospace;
   }
+  input:focus{
+    margin-right: 10px;
+    outline: transparent;
+    background: #111;
+    color: white;
+  }
+  .focused{
+    animation: radialPulse 2.5s infinite;
+  }
+
+  @keyframes radialPulse {
+    0% {
+ 
+    }
+    50% {
+ 
+      background: #84edb2;
+    }
+    100% {
+ 
+    }
+  }
   .box{
     border: 1px solid gray;
   }
@@ -41,3 +63,5 @@ body{
       opacity: 0;
     }
   }
+
+ 

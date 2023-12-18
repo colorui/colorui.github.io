@@ -6,4 +6,4 @@
 ![PREVIEW](./preview.png)
 ![PREVIEW](./preview2.png)
 
-`see issues -> line 154 - index.html`
+`see issues -> line 35 - renderColor.js`
