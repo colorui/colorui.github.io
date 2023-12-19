@@ -20,6 +20,18 @@ class Input1 extends HTMLElement {
     input.addEventListener('blur', () => {
       button.classList.remove('focused')
     })
+
+    document.addEventListener('themeChange', () => {
+      const body = document.body
+      const button = this.querySelector('#submitButton')
+
+      // Check if the background is black and update the stroke color
+      if (body.style.background === "black") {
+        button.querySelector('svg').setAttribute('stroke', 'white')
+      } else {
+        button.querySelector('svg').setAttribute('stroke', 'currentColor')
+      }
+    })
   }
 }
 
