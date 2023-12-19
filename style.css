@@ -1,8 +1,16 @@
-body{
-    /* Correct jump if scrollbar visible due to window height */
-    overflow-y: auto!important; 
+html{
+  margin-right: 0;
+  padding-right: 0;
+}
+html, body{
+  overflow-X: hidden;
+  /* PREVENT IOS BOUNCE */
+  overscroll-behavior: none;
+}
+body{ 
     background: white;
     font-family: monospace;
+    position: relative;
   }
   input:focus{
     margin-right: 10px;
@@ -54,6 +62,7 @@ body{
   }
 
   .modal{
+    overflow: hidden;
     opacity: 1;
     transition: opacity 500ms;
     animation: fadeOut 500ms ease-out 4s forwards;
@@ -64,4 +73,6 @@ body{
     }
   }
 
- 
+ .hideMainUiError{
+    display: none;
+ }

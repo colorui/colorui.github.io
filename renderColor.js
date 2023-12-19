@@ -46,21 +46,42 @@
         document.getElementById(currentColOneBId).style.color = hexCodes[(index + 2)]
         
       } else {
-        document.body.style.overflowY = "hidden";
+        // PREVENT BACK SCROLL WHEN MODAL OPEN
+        document.getElementById('container').classList.add("hideMainUiError")
+        // MATCH MODAL COLOUR 
+        document.querySelector('body').style.background = "#f9f9f9"
 
-        const error = document.getElementById('error');
-        error.classList.remove("hideError");
-        error.classList.add("showError");
+        const error = document.getElementById('error')
+        error.classList.remove("hideError")
+        error.classList.add("showError")
 
         document.getElementById('modal').classList.add("modal")
         
+        // Add click to modal text so user can close before timeout completes
+        modal.addEventListener('click', function() {
+          modal.classList.remove('modal')
+
+          error.classList.remove("showError")
+          error.classList.add("hideError")
+
+          document.getElementById('container').classList.remove("hideMainUiError")
+          // RESET UI BACKGROUND COLOUR
+          document.querySelector('body').style.background = "white"
+          
+        })
+
+        // Close modal after (4.4 seconds + 500ms) css fadeOut transition
         setTimeout(() => {
-          document.body.style.overflowY = "auto";
+          document.body.style.overflowY = "auto"
 
           error.classList.remove("showError");
           error.classList.add("hideError");
           
           document.getElementById('modal').classList.remove("modal")
-        }, 4400);  
+
+          document.getElementById('container').classList.remove("hideMainUiError")
+          // RESET UI BACKGROUND COLOUR
+          document.querySelector('body').style.background = "white"
+        }, 4400)
       }
     }
