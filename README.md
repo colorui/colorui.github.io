@@ -2,11 +2,12 @@
 
 ## Test out colours for your User Interface design and branding.
 
-`Fetures a customised version of https://colorcopy.github.io/`
-
 [LIVE SITE](https://colorui.github.io/)
 
 ![PREVIEW](./preview.png)
+
+`Features a customised version of` [ColorCopy](https://colorcopy.github.io/)
+
 
 
 
