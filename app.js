@@ -5,7 +5,7 @@
     let textShadowColorInput = document.getElementById('textShadowColor');
 
     function sendForm() {
-      let wordInValue = wordInInput.value.trim() || "abcd";
+      let wordInValue = wordInInput.value.trim() || "colorui";
       let containerBg = containerBgInput.value || "#e9ef11";
       let textColor = textColorInput.value || "#fd32ca";
       let textShadowColor = textShadowColorInput.value || "transparent";
