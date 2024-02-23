@@ -2,38 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>colorui</title>
-  <meta name="description" content="Test out colours for your User Interface design and branding.">
+  <!-- *** -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+  <!-- *** -->
+  <title>colorui - v.2.0</title>
   <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
-
-  <!-- STYLES -->
-  <script src='tailwind.js'></script>
   <link rel='stylesheet' href='style.css' />
-
-  <!-- WEB COMPONENTS -->
-  <script type='module' src='ErrorModal.js'></script>
-  <script type='module' src='Input1.js'></script>
-  <script type='module' src='Row1.js'></script>
-  <script type='module' src='Input2.js'></script>
-  <script type='module' src='Row2.js'></script>
-  <script type='module' src='Input3.js'></script>
-  <script type='module' src='Row3.js'></script>
 </head>
+
 <body>
 
-<!-- ERROR MODAL -->
-<Errormodal-component></Errormodal-component>
+<iframe src="/colourcopy/" class="colourcopy" frameborder="0" allowfullscreen></iframe>
 
-
-<!-- CONTAINER -->
-<div id="container" class="max-w-3xl mx-auto px-1 mb-[80px]">
-  
-  <!-- SOCIALS -->
-  <nav>
-    <div class="socials flex justify-between mx-2 sm:mx-0 pt-2 pb-1">
+<!--  -->
+  <div class="wrapper">
+    <nav class="socials">
+      <div class="socials">
       
-      <a href="https://github.com/colorui/colorui.github.io" target="_blank">
+      <a href="https://github.com/colorcopy/colorcopy.github.io" target="_blank">
         <img src="https://raw.githubusercontent.com/mattheweq/icons-repo/main/github.svg">
       </a>
 
@@ -47,43 +33,28 @@
     </div>
   </nav>
 
+  <div class="form">
+    <input id="containerBg" type="text" placeholder="Enter background color" onfocus="clearInput(this)">
+    <input id="textColor" type="text" placeholder="Enter text color" onfocus="clearInput(this)">
+    <input id="textShadowColor" type="text" placeholder="Enter text shadow color" onfocus="clearInput(this)">
+    <input id="wordIn" type="text" placeholder="Enter custom text" onfocus="clearInput(this)">
+    <button onclick="sendForm()">GO!</button>
+  </div>
+    
+  <div class="contrast">
+    <p><span>&rarr;</span> cont</p>
+    <p>trast <span>&larr;</span></p>
+  </div>
 
-<!-- ROW 1 -->
-<!-- INPUT 1 && THEME TOGGLER -->
-<div class="flex justify-between mt-2 md:mt-4">
-  <Input1-component></Input1-component>
-
-  <button onclick="toggleDark()" id="toggler" class="text-white p-2 rounded-full w-10 h-10"></button> 
-</div>
-  <Row1-component></Row1-component>
-
-
-<!-- ROW 2 -->
-<Input2-component></Input2-component>
-<Row2-component></Row2-component>
-
-
-<!-- ROW 3 -->
-<Input3-component></Input3-component>
-<Row3-component></Row3-component>
+</div><!-- \wrapper -->
 
 
-<div class="flex justify-center mt-8">
-  <h4 class="text-xl bg-green-500 text-white px-3 py-1 rounded">
-    <a href="/v2" target="_blank">Try v.2.0</a>
-  </h4>
-</div>
-<!--  -->
-<!--  -->
-</div><!-- \CONTAINER -->
-<!--  -->
-<!--  -->
+  <div id="container">
+    <h1 id="wordOut"></h1>
+  </div>
+  
 
-
-<!-- LOGIC -->
-<script src='themeToggler.js'></script>
-<script src="renderColor.js"></script>
-<!--  -->
-<!--  -->
+  
+<script src="app.js"></script>
 </body>
 </html>

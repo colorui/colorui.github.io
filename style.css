@@ -1,99 +1,116 @@
-html{
-  margin-right: 0;
-  padding-right: 0;
-}
-html, body{
-  overflow-X: hidden;
-  /* PREVENT IOS BOUNCE */
-  overscroll-behavior: none;
-}
-body{ 
-    background: white;
-    font-family: monospace;
-    position: relative;
+ * {
+    margin: 0;
+    padding: 0;
   }
-  input:focus{
-    margin-right: 10px;
-    outline: transparent;
-    background: #111;
-    color: white;
+  .wrapper{
+    padding-left: 75px; /* must match h1 and .colourcopy */
   }
-  .focused{
-    animation: radialPulse 2.5s infinite;
-  }
+    .socials{
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+      gap: 2rem;
+    }
+    /* SVG ICONS */
+    .socials img{
+      width: 30px;
+      height: auto;
+      filter: invert(.7);
+    }
+    .socials img:hover{
+      filter: invert(0);
+    }
 
-  @keyframes radialPulse {
-    0% {
- 
+    #spotify{
+      width: 45px;
+      margin: -10px 5px 0;
+      filter: invert(0);
     }
-    50% {
- 
-      background: #84edb2;
+
+    #spotify:hover{
+      filter: invert(.4);
     }
-    100% {
- 
-    }
-  }
-  .box{
-    border: 1px solid gray;
-  }
-  .hideError{
-    display: none;
-  }
-  .showError{
-    position: fixed;
+  .form{
+    position: relative;
+    z-index: 10;
     display: flex;
     flex-direction: column;
-    z-index: 100;
-    height: 110vh;
-    width: 100vw;
-    background: #f9f9f9;
+    width: fit-content;
+    justify-content: center;
+    margin: 20px auto;
+    gap: 1rem;
+  }
+  input{
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 4px;
+  }
+  button{
+    border: 0;
+    border-radius: 4px;
+    padding: 8px;
+    background: #000;
+    color: white;
+  }
+
+  .contrast{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-family: monospace;
+  }
+  .contrast p:first-of-type, p:last-of-type span {
+    color: white;
+  }
+  .contrast p:last-of-type, p:first-of-type span {
+    color: black;
+  }
+
+  #container{
+    position: relative;
+    z-index: 1;
+    display: flex;
     justify-content: center;
     align-items: center;
-    animation: fadeIn 300ms;
   }
-  @keyframes fadeIn {
-    from{
-      opacity: 0;
+  h1{
+    margin-top: 20px;
+    padding-left: 75px; /* must match .wrapper and .colourcopy */
+    font-family: sans-serif;
+    letter-spacing: .1px;
+    word-spacing: .1px;
+    user-select: none;
+  }
+
+  /*  */
+  /*  */
+  /*  */
+.colourcopy{
+  overflow-x: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 75px; /* must match .wrapper and h1 */
+  height: 100%;
+}
+
+  @media screen and (min-width: 1070px){
+    .form{
+      flex-direction: row;
     }
-    to{
-      opacity: 1;
+    .colourcopy{
+      width: 100px;
+    }
+    .wrapper{
+      padding-left: 100px;
+    }
+    h1{
+      padding-left: 100px;
     }
   }
 
-  .modal{
-    overflow: hidden;
-    opacity: 1;
-    transition: opacity 500ms;
-    animation: fadeOut 500ms ease-out 4s forwards;
-  }
-  @keyframes fadeOut {
-    to {
-      opacity: 0;
-    }
-  }
-
- .hideMainUiError{
-    display: none;
- }
-
-
- /* SVG ICONS */
-.socials img{
-  width: 30px;
-  height: auto;
-  filter: invert(.8);
-}
-.socials img:hover{
-  filter: invert(0);
-}
-
-#spotify{
-  width: 45px;
-  margin: -10px 5px 0;
-  filter: invert(0);
-}
-
-#spotify:hover{
-  filter: invert(0.3);
-}
+  

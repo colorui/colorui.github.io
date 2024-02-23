@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>colorui</title>
+  <meta name="description" content="Test out colours for your User Interface design and branding.">
+  <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
+
+  <!-- STYLES -->
+  <script src='tailwind.js'></script>
+  <link rel='stylesheet' href='style.css' />
+
+  <!-- WEB COMPONENTS -->
+  <script type='module' src='ErrorModal.js'></script>
+  <script type='module' src='Input1.js'></script>
+  <script type='module' src='Row1.js'></script>
+  <script type='module' src='Input2.js'></script>
+  <script type='module' src='Row2.js'></script>
+  <script type='module' src='Input3.js'></script>
+  <script type='module' src='Row3.js'></script>
+</head>
+<body>
+
+<!-- ERROR MODAL -->
+<Errormodal-component></Errormodal-component>
+
+
+<!-- CONTAINER -->
+<div id="container" class="max-w-3xl mx-auto px-1 mb-[80px]">
+  
+  <!-- SOCIALS -->
+  <nav>
+    <div class="socials flex justify-between mx-2 sm:mx-0 pt-2 pb-1">
+      
+      <a href="https://github.com/colorui/colorui.github.io/v1" target="_blank">
+        <img src="https://raw.githubusercontent.com/mattheweq/icons-repo/main/github.svg">
+      </a>
+
+      <a href="https://open.spotify.com/artist/66OsKKYin7yLMQUsZxjE91" target="_blank">
+        <img  id="spotify" src="https://raw.githubusercontent.com/mattheweq/icons-repo/main/soundwave.svg">
+      </a>
+
+      <a href="mailto:mattheweq8@gmail.com">
+        <img src="https://raw.githubusercontent.com/mattheweq/icons-repo/main/email.svg">
+      </a>
+    </div>
+  </nav>
+
+
+<!-- ROW 1 -->
+<!-- INPUT 1 && THEME TOGGLER -->
+<div class="flex justify-between mt-2 md:mt-4">
+  <Input1-component></Input1-component>
+
+  <button onclick="toggleDark()" id="toggler" class="text-white p-2 rounded-full w-10 h-10"></button> 
+</div>
+  <Row1-component></Row1-component>
+
+
+<!-- ROW 2 -->
+<Input2-component></Input2-component>
+<Row2-component></Row2-component>
+
+
+<!-- ROW 3 -->
+<Input3-component></Input3-component>
+<Row3-component></Row3-component>
+
+
+<!--  -->
+<!--  -->
+</div><!-- \CONTAINER -->
+<!--  -->
+<!--  -->
+
+
+<!-- LOGIC -->
+<script src='themeToggler.js'></script>
+<script src="renderColor.js"></script>
+<!--  -->
+<!--  -->
+</body>
+</html>

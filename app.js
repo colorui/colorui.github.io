@@ -6,8 +6,8 @@
 
     function sendForm() {
       let wordInValue = wordInInput.value.trim() || "abcd";
-      let containerBg = containerBgInput.value || "#AE98ED";
-      let textColor = textColorInput.value || "#CDFE43";
+      let containerBg = containerBgInput.value || "#e9ef11";
+      let textColor = textColorInput.value || "#fd32ca";
       let textShadowColor = textShadowColorInput.value || "transparent";
 
       document.body.style.backgroundColor = containerBg;
@@ -18,8 +18,22 @@
 
       adjustFontSize(); 
     }
+    
+    // REMOVED FOR IMPROVED UX
+    // function clearInput(inputElement){
+    //   if(inputElement.value){
+    // use the previous value as the placeholder text
+    //     inputElement.placeholder = inputElement.value;
+    //   } else{
+    // if no value use default placeholder text
+    //     inputElement.placeholder;
+    //   }
+    // clear the input box of any value onfocus 
+    //   inputElement.value = "";
+    // }
 
-
+    // render the text at maximum size in the viewport
+    // issue with line height for smaller words
     function adjustFontSize() {
       let h1 = document.querySelector('h1');
       let targetWidth = window.innerWidth * 0.98;
@@ -27,7 +41,7 @@
       let maxFontSize = 1200;
       let fontSize;
 
-      // Binary search algorithm
+      // binary search algorithm
       while (minFontSize <= maxFontSize) {
           fontSize = (minFontSize + maxFontSize) / 2;
           h1.style.fontSize = fontSize + 'px';
