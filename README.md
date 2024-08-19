@@ -1,4 +1,4 @@
-# colorui
+# colorui v.2
 
 ## Test out colours for your User Interface design and branding.
 
