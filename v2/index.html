@@ -2,17 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+
   <title>colorui - v.2.0</title>
   <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
   <link rel='stylesheet' href='style.css' />
 </head>
 
 <body>
-  <nav class="socials">
+
+<iframe src="colourcopy/" class="colourcopy" frameborder="0" allowfullscreen></iframe>
+
+<!--  -->
+  <div class="wrapper">
+    <nav class="socials">
       <div class="socials">
       
-      <a href="https://github.com/colorcopy/colorcopy.github.io" target="_blank">
+      <a href="https://github.com/colorui/colorui.github.io" target="_blank">
         <img src="https://raw.githubusercontent.com/mattheweq/icons-repo/main/github.svg">
       </a>
 
@@ -25,19 +32,29 @@
       </a>
     </div>
   </nav>
-  
+
   <div class="form">
-    <input id="containerBg" type="text" placeholder="Enter background color">
-    <input id="textColor" type="text" placeholder="Enter text color">
-    <input id="textShadowColor" type="text" placeholder="Enter text shadow color">
-    <input id="wordIn" type="text" placeholder="Enter your text">
+    <input id="containerBg" type="text" placeholder="Enter background color" onfocus="clearInput(this)">
+    <input id="textColor" type="text" placeholder="Enter text color" onfocus="clearInput(this)">
+    <input id="textShadowColor" type="text" placeholder="Enter text shadow color" onfocus="clearInput(this)">
+    <input id="wordIn" type="text" placeholder="Enter custom text" onfocus="clearInput(this)">
     <button onclick="sendForm()">GO!</button>
   </div>
+    
+  <div class="contrast">
+    <p><span>&rarr;</span> cont</p>
+    <p>rast <span>&larr;</span></p>
+  </div>
+
+</div><!-- \wrapper -->
+
 
   <div id="container">
     <h1 id="wordOut"></h1>
   </div>
+  
 
+  
 <script src="app.js"></script>
 </body>
 </html>

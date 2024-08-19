@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
   }
+  .wrapper{
+    padding-left: 75px; /* must match h1 and .colourcopy */
+  }
     .socials{
       display: flex;
       justify-content: center;
@@ -38,17 +41,31 @@
     gap: 1rem;
   }
   input{
-    padding: 4px;
+    padding: 8px 16px;
     border: 0;
     border-radius: 4px;
   }
   button{
     border: 0;
     border-radius: 4px;
-    padding: 4px;
+    padding: 8px;
     background: #000;
     color: white;
   }
+
+  .contrast{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-family: monospace;
+  }
+  .contrast p:first-of-type, p:last-of-type span {
+    color: white;
+  }
+  .contrast p:last-of-type, p:first-of-type span {
+    color: black;
+  }
+
   #container{
     position: relative;
     z-index: 1;
@@ -58,13 +75,42 @@
   }
   h1{
     margin-top: 20px;
+    padding-left: 75px; /* must match .wrapper and .colourcopy */
     font-family: sans-serif;
     letter-spacing: .1px;
     word-spacing: .1px;
     user-select: none;
   }
-  @media screen and (min-width: 768px){
+
+  /*  */
+  /*  */
+  /*  */
+.colourcopy{
+  overflow-x: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 75px; /* must match .wrapper and h1 */
+  height: 100%;
+}
+
+  @media screen and (min-width: 1070px){
     .form{
       flex-direction: row;
     }
+    .colourcopy{
+      width: 100px;
+    }
+    .wrapper{
+      padding-left: 100px;
+    }
+    h1{
+      padding-left: 100px;
+    }
   }
+
+  
