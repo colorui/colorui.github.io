@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>colorui - v.2.0</title>
+  <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
+  <link rel='stylesheet' href='style.css' />
+</head>
+
+<body>
+  <nav class="socials">
+      <div class="socials">
+      
+      <a href="https://github.com/colorcopy/colorcopy.github.io" target="_blank">
+        <img src="https://raw.githubusercontent.com/mattheweq/icons-repo/main/github.svg">
+      </a>
+
+      <a href="https://open.spotify.com/artist/66OsKKYin7yLMQUsZxjE91" target="_blank">
+        <img  id="spotify" src="https://raw.githubusercontent.com/mattheweq/icons-repo/main/soundwave.svg">
+      </a>
+
+      <a href="mailto:mattheweq8@gmail.com">
+        <img src="https://raw.githubusercontent.com/mattheweq/icons-repo/main/email.svg">
+      </a>
+    </div>
+  </nav>
+  
+  <div class="form">
+    <input id="containerBg" type="text" placeholder="Enter background color">
+    <input id="textColor" type="text" placeholder="Enter text color">
+    <input id="textShadowColor" type="text" placeholder="Enter text shadow color">
+    <input id="wordIn" type="text" placeholder="Enter your text">
+    <button onclick="sendForm()">GO!</button>
+  </div>
+
+  <div id="container">
+    <h1 id="wordOut"></h1>
+  </div>
+
+<script src="app.js"></script>
+</body>
+</html>
