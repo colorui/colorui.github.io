@@ -2,7 +2,7 @@
 
 ## Test colors in a User Interface when designing and prototyping.
 
-[LIVE SITE](https://colorui.github.io/v3)
+[LIVE SITE](https://colorui.github.io)
 
 ![PREVIEW](./preview.png)
 ![PREVIEW](./preview2.png)
