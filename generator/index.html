@@ -3,18 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Colorcopy - A Random Hex Code Generator</title>
+  <title>ColorUI</title>
   <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
   <link rel='stylesheet' href='style.css' />
+  <script src='../tailwindcss.min.js'></script>
+  <script defer src='../nav.js'></script>
 </head>
 <body>
 
+<div id="nav-container"></div>
+
+
   <header>
-    <button onclick="generateRandomColors()">Generate New Colors</button>
+    <button onclick="generateRandomColors()">Generate Random Colors</button>
   </header>
 
-  <div id="colorContainer" class="swatches">
-  </div>
+  <div id="colorContainer" class="swatches"></div>
 
   
 

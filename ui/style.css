@@ -17,31 +17,6 @@
 /*  */
 /*  */
 /*  */
-    .socials{
-      display: flex;
-      justify-content: center;
-      margin-top: 8px;
-      gap: 2rem;
-    }
-    /* SVG ICONS */
-    .socials img{
-      width: 30px;
-      height: auto;
-      filter: invert(.8);
-    }
-    .socials img:hover{
-      filter: invert(.1);
-    }
-
-    #spotify{
-      width: 100px;
-      margin-top: -2px;
-      filter: invert(.1);
-    }
-
-    #spotify:hover{
-      filter: invert(1);
-    }
   
 /*  */
 /*  */
@@ -55,7 +30,7 @@
   position: fixed;
   z-index: 100;
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
   width: 85px;
   height: 100%;

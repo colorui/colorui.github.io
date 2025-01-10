@@ -1,0 +1,29 @@
+body{
+  background: #f7f7f7;
+}
+
+input{
+  width: 100px;
+}
+input[type=text]{
+  padding: 4px;
+}
+
+.shapes-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.circle {
+  max-width: 300px;
+  max-height: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  aspect-ratio: 1 /1;
+}
+
+.square, .square2, .square3, .square4 {
+  border-radius: 0%;
+}

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ColorUI</title>
+  <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
+  <script src='../tailwindcss.min.js'></script>
+  <script defer src='../nav.js'></script>
+  <style>
+  body{
+  transition: all .5s ease-out;
+}
+/* body onload */
+.fade-in{
+  opacity: 0;
+  animation: fadeIn .5s ease-in forwards;
+}
+@keyframes fadeIn {
+  0% {
+    animation: ease-in;
+    opacity: 0%;
+  }
+  100% {
+    animation: ease-out;
+    opacity: 100%;
+  }
+}
+#refreshButton {
+  position: fixed;
+  top: 100px;
+  right: -20px;
+  rotate: -90deg;
+  z-index: 998;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+#refreshButton:hover {
+    background-color: #ff3333;
+}
+@media (min-width: 640px){
+  #refreshButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    rotate: 0deg;
+  }
+}
+
+/* shape animation */
+.circle {
+  z-index: 10;
+  position: absolute;
+  border-radius: 50%;
+  animation: fluid-motion 5s ease-in-out infinite;
+  opacity: 0.8;
+}
+@keyframes fluid-motion {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(calc(-10vw + 300px), calc(10vh - 300px)) scale(1);
+    opacity: 1;
+  }
+  300% {
+    transform: translate(calc(10vw - 300px), calc(-10vh + 300px)) scale(1);
+    opacity: 1;
+  }
+}
+
+  /* Hide the default file input */
+    #file-input {
+        display: none;
+    }
+
+    /* Style the custom button */
+    #custom-file-label {
+        display: inline-block;
+        background-color: green;
+        color: white;
+        padding: 4px;
+        font-size: 12px;
+        border-radius: 8px;
+        margin-top: 7px;
+        cursor: pointer;
+        text-align: center;
+        width: fit-content;
+    }
+
+    /* Hover effect for the button */
+    #custom-file-label:hover {
+        background-color: forestgreen;
+    }
+  </style>
+</head>
+<body class="fade-in flex flex-col min-h-screen overflow-hidden">
+ <button id="refreshButton" onclick="refreshPage()">Restart</button>
+
+
+<div id="nav-container"></div>
+
+
+  <div class="flex justify-center">
+    <form id="color-form" class="mt-0 flex flex-col justify-center gap-1 w-fit">
+    
+      <div id="color-inputs" class="grid grid-cols-1 md:grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-5 mx-auto">
+        <input
+          type="text"
+          class="p-2 text-black rounded-lg border border-gray-300"
+          placeholder="Enter color #1 (e.g., #FF5733)"
+        />
+        <input
+          type="text"
+          class="p-2 text-black rounded-lg border border-gray-300"
+          placeholder="Enter color #2 (e.g., #33FF57)"
+        />
+        <input
+          type="text"
+          class="p-2 text-black rounded-lg border border-gray-300"
+          placeholder="Enter color #3 (e.g., #5733FF)"
+        />
+        <input
+          type="text"
+          class="p-2 text-black rounded-lg border border-gray-300"
+          placeholder="Enter color #4 (e.g., #33D4FF)"
+        />
+        <input
+          type="text"
+          class="p-2 text-black rounded-lg border border-gray-300"
+          placeholder="Enter color #5 (e.g., #FFD433)"
+        />
+      </div>
+      <div class="-mt-1 flex gap-1">
+          <button
+          type="button"
+          id="add-colors-btn"
+          class="w-full px-4 py-2 mt-2 bg-orange-400 text-white rounded-lg hover:bg-orange-500"
+        >
+          Start Visualiser
+        </button>
+        
+        <input
+        type="file"
+        id="file-input"
+        accept="application/json"
+        tabindex="0"
+        />
+        <label for="file-input" id="custom-file-label" tabindex="0">Upload JSON</label>
+
+      </div>
+    </form>
+</div>
+
+
+
+
+<div id="canvas" class="w-full h-full relative"></div>
+
+
+
+
+  <script>
+    const addColorsBtn = document.getElementById("add-colors-btn");
+    const fileInput = document.getElementById("file-input");
+    const customLabel = document.getElementById('custom-file-label');
+    const colorInputs = document.getElementById("color-inputs").children;
+    const canvas = document.getElementById("canvas");
+    
+    let colors = [];
+
+    function createStroke(color) {
+      // Pick a random border color from the colors array
+      const borderColor = colors[Math.floor(Math.random() * colors.length)];
+
+      const circle = document.createElement("div");
+      const size = Math.random() * 150 + 150; // Random sizes
+      const xPos = Math.random() * window.innerWidth;
+      const yPos = Math.random() * window.innerHeight;
+
+      circle.style.width = `${size}px`;
+      circle.style.height = `${size}px`;
+      circle.style.background = color;
+      // circle.style.background = 'transparent';
+      circle.style.top = `${yPos}px`;
+      circle.style.right = `${xPos}px`;
+      circle.style.border = `double ${borderColor} 100px`;
+      circle.classList.add("circle");
+
+      canvas.appendChild(circle);
+
+      // Remove circle after animation completes
+      setTimeout(() => {
+        canvas.removeChild(circle);
+      }, 10000);
+    }
+
+    function startPainting(inputColors) {
+      colors = inputColors; // Update the global 'colors' array
+      colors.forEach((color) => {
+        setInterval(() => {
+          createStroke(color);
+        }, Math.random() * 100 + 500); // Random interval
+      });
+    }
+
+
+    // Handle adding colors from input fields
+    addColorsBtn.addEventListener("click", () => {
+      const inputColors = Array.from(colorInputs)
+        .map((input) => input.value.trim())
+        .filter(
+          (color) => /^#([0-9A-F]{3}|[0-9A-F]{6})$/i.test(color) // Validate hex colors
+        );
+
+      if (inputColors.length === 0) {
+        alert("Please enter at least one valid hex color!");
+        return;
+      }
+
+      startPainting(inputColors);
+    });
+
+    // Handle importing colors from a JSON file
+    fileInput.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+
+      if (!file) {
+        alert("Please select a file!");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const colors = JSON.parse(e.target.result);
+
+          if (!Array.isArray(colors) || colors.some(
+            (color) => !/^#([0-9A-F]{3}|[0-9A-F]{6})$/i.test(color)
+          )) {
+            alert("Invalid file format! Please upload a JSON file with an array of valid hex colors.");
+            return;
+          }
+
+          startPainting(colors);
+        } catch (error) {
+          alert("Error reading file! Please make sure it's a valid JSON.");
+        }
+      };
+
+      reader.readAsText(file);
+    });
+
+
+    // Allow activation of the label using the Enter key
+      customLabel.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault(); // Prevent default scrolling for Space key
+              fileInput.click(); // Simulate a click on the hidden file input
+          }
+      });
+
+    // JavaScript function to refresh the page
+        function refreshPage() {
+            location.reload(); // Reloads the current page
+        }
+  </script>
+</body>
+</html>

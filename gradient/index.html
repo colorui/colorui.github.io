@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
+    <title>ColorUI</title>
+    <script src='../tailwindcss.min.js'></script>
+    <script defer src='../nav.js'></script>
+    <style>
+body{
+  transition: all .5s ease-out;
+}
+/* body onload */
+.fade-in{
+  opacity: 0;
+  animation: fadeIn .5s ease-in forwards;
+}
+@keyframes fadeIn {
+  0% {
+    animation: ease-in;
+    opacity: 0%;
+  }
+  100% {
+    animation: ease-out;
+    opacity: 100%;
+  }
+}
+</style>
+</head>
+<body class="fade-in overflow-hidden">
+
+
+
+<div id="nav-container"></div>
+
+
+
+
+<div class="flex items-center justify-center">
+    <div class="mt-2 w-full h-full flex flex-col items-center justify-center space-y-6 p-0">
+        <div class="flex items-center justify-center gap-2">
+            <input 
+                id="color1"
+                type="text" 
+                placeholder="#f42454"
+                class="w-24 p-2 border border-gray-300 rounded shadow focus:outline-none focus:ring focus:ring-blue-300"
+            >
+            <input 
+                id="color2"
+                type="text" 
+                placeholder="#fbbcdc"
+                class="w-24 p-2 border border-gray-300 rounded shadow focus:outline-none focus:ring focus:ring-blue-300"
+            >
+            <button 
+                id="applyGradient"
+                class="p-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+            >
+                <span>Apply</span> 
+                <span class="hidden lg:inline-block">Gradient</span>
+            </button>
+        </div>
+
+      <div class="flex justify-center mx-auto py-4">
+        <div id="shapesContainer" class="flex gap-2">
+            <!-- Geometric shapes will be added here -->
+        </div>
+      </div>
+    </div>
+
+</div>
+    <script>
+        const applyGradientButton = document.getElementById('applyGradient');
+        const color1Input = document.getElementById('color1');
+        const color2Input = document.getElementById('color2');
+
+        function generateGradient() {
+            shapesContainer.innerHTML = '';
+
+            const shape = document.createElement('div');
+            shape.className = 'w-screen h-screen';
+            shapesContainer.appendChild(shape);
+        }
+
+        // Apply gradient colors to shapes
+        function applyGradient() {
+            const color1 = color1Input.value || '#f42454';
+            const color2 = color2Input.value || '#fbbcdc';
+            const shapes = shapesContainer.children;
+
+            for (const shape of shapes) {
+                shape.style.backgroundImage = `linear-gradient(to right, ${color1}, ${color2})`;
+            }
+        }
+        document.addEventListener("DOMContentLoaded", () => {  
+            generateGradient();
+            applyGradient();
+        });
+
+        // Apply gradient when the button is clicked
+        applyGradientButton.addEventListener('click', applyGradient);
+    </script>
+</body>
+</html>

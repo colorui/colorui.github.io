@@ -1,0 +1,75 @@
+:root{
+  --spacing: 25px;
+  --pad: 6px;
+  --paletteBoxWidth: 100px;
+  --paletteBoxHeight: 150px;
+  --paletteDescFontSize: 14px;
+  --colourCodeFontSize: 15px;
+}
+body{
+  padding: 5px 0px;
+}
+
+
+.input-form {
+  margin-bottom: 20px;
+}
+
+.input-form input {
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.input-form button {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+.palette__item{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.palette__colour{
+  width: var(--paletteBoxWidth);
+  height: var(--paletteBoxHeight);
+}
+.palette__descX{
+  display: flex;
+  justify-content: space-between;
+}
+.palette__desc{
+  width: var(--paletteBoxWidth);
+  padding: var(--pad);
+  background-color: transparent;
+  color: #333;
+  border: 1px dashed #ccc;
+  border-top: 0;
+  font-weight: bold;
+  font-size: var(--paletteDescFontSize);
+}
+
+
+.palette__message{
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  transform: translate(-50% -50%);
+  padding: 4px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  font-family: monospace;
+}

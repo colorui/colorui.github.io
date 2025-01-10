@@ -31,21 +31,11 @@ function generateRandomColors() {
   }
 }
 
-// ***
 async function copyToClipboard(text, copiedMessage) {
   try {
-    if (navigator.clipboard) {
-      await navigator.clipboard.writeText(text);
-    } else {
-      var textarea = document.createElement('textarea');
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy'); // FOR IOS
-      document.body.removeChild(textarea);
-    }
+    await navigator.clipboard.writeText(text);
 
-    copiedMessage.innerHTML = `<div class="copyMessageText">copied</div>`;
+    copiedMessage.innerHTML = `<div class="copyMessageText">copied<br/> <span class="hexTextCopied">${text}</span>to clipboard</div>`;
     copiedMessage.style.display = 'block';
 
     setTimeout(() => {
@@ -55,7 +45,5 @@ async function copyToClipboard(text, copiedMessage) {
     console.error('Unable to copy to clipboard', err);
   }
 }
-// ***
-
 
 document.onload = generateRandomColors();

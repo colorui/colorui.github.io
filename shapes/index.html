@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ColorUI</title>
+  <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
+  <script src="../tailwindcss.min.js"></script>
+  <script defer src='../nav.js'></script>
+  <link rel='stylesheet' href='style.css' />
+  <script src="app.js"></script>
+      <style>
+body{
+  transition: all .5s ease-out;
+}
+/* body onload */
+.fade-in{
+  opacity: 0;
+  animation: fadeIn .5s ease-in forwards;
+}
+@keyframes fadeIn {
+  0% {
+    animation: ease-in;
+    opacity: 0%;
+  }
+  100% {
+    animation: ease-out;
+    opacity: 100%;
+  }
+}
+</style>
+</head>
+<body class="fade-in">
+
+
+<div id="nav-container"></div>
+
+
+<div class="mt-2 mb-2 flex justify-center"><label for="jsonFile" class="font-bold pt-1 pr-1">Upload JSON File:</label>
+<input type="file" id="jsonFile" accept="application/json" /></div>
+
+
+<form id="colorForm" class="mt-1 flex flex-col items-center lg:flex-row justify-center gap-2">
+  <label for="color1" class="font-bold pt-1">Color 1:</label>
+  <input type="text" id="color1" pattern="#[0-9a-fA-F]{6}" required>
+
+  <label for="color2" class="font-bold pt-1">Color 2:</label>
+  <input type="text" id="color2" pattern="#[0-9a-fA-F]{6}" required>
+
+  <label for="color3" class="font-bold pt-1">Color 3:</label>
+  <input type="text" id="color3" pattern="#[0-9a-fA-F]{6}" required>
+
+  <label for="color4" class="font-bold pt-1">Color 4:</label>
+  <input type="text" id="color4" pattern="#[0-9a-fA-F]{6}" required>
+
+  <label for="color5" class="font-bold pt-1">Color 5:</label>
+  <input type="text" id="color5" pattern="#[0-9a-fA-F]{6}" required>
+
+  <button type="button" onclick="generateShapes()" class="bg-green-500 rounded py-1 px-2 text-white">Generate Shapes</button>
+</form>
+
+
+
+<!-- circle shapes -->
+<div id="shapesContainer" class="mt-4 flex flex-col gap-4"></div>
+
+
+
+
+</body>
+</html>
