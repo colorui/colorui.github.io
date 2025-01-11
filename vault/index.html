@@ -17,19 +17,29 @@
 <header class="flex flex-col xl:flex-row justify-between xl:items-center w-full gap-4 mt-2 mb-8">
 
     <div class="flex justify-end md:justify-between items-center">
-      <p class="bg-black text-white text-center px-2 w-fit font-mono hidden md:block ml-16">Copy on click</p>
-      <p class="bg-white text-black text-right px-2 w-fit font-mono xl:hidden">Saved locally to browser</p>
+      
+      <!-- MOBILE VIEW -->  
+      <p class="bg-black text-white text-sm text-right px-2 w-fit font-mono xl:hidden">Saves to browser cache</p>
+
     </div>
 
-    <div class="mt-4 xl:mt-0 flex flex-col xl:flex-row items-center gap-2 w-full xl:w-auto">
+
+    <div class="mt-4 xl:mt-0 flex flex-col xl:flex-row items-center gap-2 w-full justify-center">
       <input type="text" id="colorHex" placeholder="Enter hex code (e.g. #ff0000)" class="p-2 border rounded w-full xl:w-auto">
       <button id="addColorBtn" class="p-2 bg-[#11cdb1] text-white rounded w-full xl:w-auto">Add Color</button>
       <button id="exportColorsBtn" class="p-2 bg-[#f64056] text-white rounded w-full xl:w-auto">Export All Colors</button>
       <input type="file" id="importColorsInput" class="hidden">
       <button id="importColorsBtn" class="p-2 bg-[#b353fc] text-white rounded w-full xl:w-auto">Import Colors (JSON)</button>
+    
+    <!-- DESKTOP  VIEW -->
+    <p class="font-mono hidden xl:block mr-2 bg-black text-white text-right px-2 w-fit cursor-pointer" 
+        id="statusMessage"
+        onclick="cacheMsg();" 
+        onmouseover="changeText();"
+        onmouseout="resetText();">Information</p>
     </div>
 
-    <p class="font-mono hidden xl:block mr-2 bg-black text-white text-right px-2 w-fit">Saved locally to browser</p>
+    
 
 </header>
 
@@ -44,5 +54,23 @@
 
 </div><!-- \wrapper -->
 <script src="script.js"></script>
+
+<script>
+function cacheMsg() {
+    alert("Deleting your browser cache / local storage will permanently remove what you have saved.");
+}
+
+function changeText() {
+    const statusMessage = document.getElementById("statusMessage");
+    statusMessage.textContent = `Click Here.`;
+}
+
+function resetText() {
+    const statusMessage = document.getElementById("statusMessage");
+    statusMessage.textContent = "Information";
+}
+
+
+</script>
 </body>
 </html>
