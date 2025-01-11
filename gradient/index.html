@@ -29,10 +29,12 @@ body{
 </style>
 </head>
 <body class="fade-in overflow-hidden">
-
-
-
 <div id="nav-container"></div>
+
+
+
+
+
 
 <div class="flex items-center justify-center">
     <div class="mt-4 w-full h-full flex flex-col items-center justify-center space-y-6 p-0">
@@ -41,15 +43,16 @@ body{
                 id="color1"
                 type="text" 
                 placeholder="#f42454"
-                class="w-24 p-2 border border-gray-300 rounded shadow focus:outline-none focus:ring focus:ring-blue-300"
+                value="#f42454"
+                class="w-24 p-2 rounded shadow focus:outline-none focus:ring focus:ring-blue-300"
             >
 
-            <!-- Swap icon -->
+
+            <!-- Swap Horizontal icon -->
             <button 
-              id="swapColors" 
-              class="w-10 h-10   flex items-center justify-center bg-gray-700 text-white rounded-full shadow hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-300"
-              aria-label="Swap colors">
-            <span class="pb-0 inline-block text-lg">⇄</span> <!-- Left-right arrow icon -->
+              id="toggleGradientHBtn" 
+              class="w-10 h-10 flex items-center justify-center bg-gray-700 text-white rounded-full shadow hover:bg-gray-600 focus:outline-none focus:ring focus:ring-green-500">
+            <span class="pb-0 inline-block text-lg rotate-90">⇅</span> <!-- Left-right arrow icon -->
            </button>
 
 
@@ -57,8 +60,19 @@ body{
                 id="color2"
                 type="text" 
                 placeholder="#fbbcdc"
-                class="w-24 p-2 border border-gray-300 rounded shadow focus:outline-none focus:ring focus:ring-blue-300"
+                value="#fbbcdc"
+                class="w-24 p-2 rounded shadow focus:outline-none focus:ring focus:ring-blue-300"
             >
+
+
+            <!-- Swap Vertical icon -->
+            <button 
+              id="toggleGradientVBtn" 
+              class="w-10 h-10 flex items-center justify-center bg-gray-700 text-white rounded-full shadow hover:bg-gray-600 focus:outline-none focus:ring focus:ring-green-500">
+            <span class="pb-0 inline-block text-lg">⇅</span> <!-- top-bottom arrow icon -->
+           </button>
+
+
 
             <button 
                 id="applyGradient"
@@ -78,50 +92,125 @@ body{
 </div>
 
 <script>
-    const applyGradientButton = document.getElementById('applyGradient');
-    const swapColorsButton = document.getElementById('swapColors');
-    const color1Input = document.getElementById('color1');
-    const color2Input = document.getElementById('color2');
-    const gradientContainer = document.getElementById('gradientContainer');
+const applyGradientButton = document.getElementById('applyGradient');
+const toggleGradientHBtn = document.getElementById('toggleGradientHBtn');
+const toggleGradientVBtn = document.getElementById('toggleGradientVBtn');
+const color1Input = document.getElementById('color1');
+const color2Input = document.getElementById('color2');
+const gradientContainer = document.getElementById('gradientContainer');
 
-    // Generate initial shape with gradient
-    function generateGradient() {
-        gradientContainer.innerHTML = '';
+// Generate initial fill with gradient
+function generateGradient() {
+    gradientContainer.innerHTML = '';
 
-        const shape = document.createElement('div');
-        shape.className = 'w-screen h-screen';
-        gradientContainer.appendChild(shape);
-    }
+    const fill = document.createElement('div');
+    fill.className = 'w-screen h-screen';
+    gradientContainer.appendChild(fill);
 
-    // Apply gradient colors to shapes
-    function applyGradient() {
-        const color1 = color1Input.value || '#f42454';
-        const color2 = color2Input.value || '#fbbcdc';
-        const shapes = gradientContainer.children;
+    // Apply the gradient to the newly created fill
+    applyGradient();
+}
 
-        for (const shape of shapes) {
-            shape.style.backgroundImage = `linear-gradient(to right, ${color1}, ${color2})`;
+// Apply gradient colors to fill
+function applyGradient() {
+    const color1 = color1Input.value || '#f42454';
+    const color2 = color2Input.value || '#fbbcdc';
+    const fillColors = gradientContainer.children;
+
+    // Apply the current gradient orientation (horizontal or vertical)
+    const horizontalGradient = `linear-gradient(${currentHOrientation}, ${color1}, ${color2})`;
+    const verticalGradient = `linear-gradient(${currentVOrientation}, ${color1}, ${color2})`;
+
+    for (const fill of fillColors) {
+        // Apply horizontal or vertical gradient based on the current toggle
+        if (currentGradientOrientation === 'horizontal') {
+            fill.style.backgroundImage = horizontalGradient;
+        } else {
+            fill.style.backgroundImage = verticalGradient;
         }
     }
+}
 
-    // Swap the gradient colors
-    function swapColors() {
-        const tempColor = color1Input.value;
-        color1Input.value = color2Input.value;
-        color2Input.value = tempColor;
+function displayColor1Value() {
+if (!color1Input.value) {
+  // If no value is set, use the default color
+  color1Input.classList.add('border-4', 'border-[#f42454]');
+} else {
+  // Clear the default color and apply the input's value
+  color1Input.classList.add('border-4', `border-[${color1Input.value}]`);
+}
+}
 
-        // Update the gradient after swapping
-        applyGradient();
+function displayColor2Value() {
+  if (!color2Input.value) {
+    // If no value is set, use the default color
+    color2Input.classList.add('border-4', 'border-[#fbbcdc]');
+  } else {
+    // Clear the default color and apply the input's value
+    color2Input.classList.add('border-4', `border-[${color2Input.value}]`);
+  }
+}
+
+
+let currentHOrientation = 'to right';  // Default horizontal direction
+let currentVOrientation = 'to top';    // Default vertical direction
+let currentGradientOrientation = 'horizontal'; // Default gradient orientation
+
+// Toggle horizontal gradient orientation
+function toggleGradientHorizontally() {
+    const color1 = color1Input.value || '#f42454';
+    const color2 = color2Input.value || '#fbbcdc';
+    const fillColors = gradientContainer.children;
+
+    // Toggle the horizontal orientation
+    currentHOrientation = currentHOrientation === 'to right' ? 'to left' : 'to right';
+    currentGradientOrientation = 'horizontal'; // Ensure we're applying horizontal gradient
+
+    const toggleHOrientation = `linear-gradient(${currentHOrientation}, ${color1}, ${color2})`;
+
+    // Apply the new gradient to all elements
+    for (const fill of fillColors) {
+        fill.style.backgroundImage = toggleHOrientation;
+    }
+    
+    applyGradient(); // Re-apply the gradient to ensure color is updated
+}
+
+// Toggle vertical gradient orientation
+function toggleGradientVertically() {
+    const color1 = color1Input.value || '#f42454';
+    const color2 = color2Input.value || '#fbbcdc';
+    const fillColors = gradientContainer.children;
+
+    // Toggle the vertical orientation
+    currentVOrientation = currentVOrientation === 'to top' ? 'to bottom' : 'to top';
+    currentGradientOrientation = 'vertical'; // Ensure we're applying vertical gradient
+
+    const toggleVOrientation = `linear-gradient(${currentVOrientation}, ${color1}, ${color2})`;
+
+    // Apply the new gradient to all elements
+    for (const fill of fillColors) {
+        fill.style.backgroundImage = toggleVOrientation;
     }
 
-    document.addEventListener("DOMContentLoaded", () => {  
-        generateGradient();
-        applyGradient();
-    });
+    applyGradient(); // Re-apply the gradient to ensure color is updated
+}
 
-    // Event listeners
-    applyGradientButton.addEventListener('click', applyGradient);
-    swapColorsButton.addEventListener('click', swapColors);
+// Initialize on DOM content loaded
+document.addEventListener("DOMContentLoaded", () => {
+    generateGradient();
+    applyGradient();
+    displayColor1Value();
+    displayColor2Value();
+});
+
+applyGradientButton.addEventListener('click', applyGradient);
+toggleGradientHBtn.addEventListener('click', toggleGradientHorizontally);
+toggleGradientVBtn.addEventListener('click', toggleGradientVertically);
+
+
+color1Input.addEventListener('change', displayColor1Value);
+color2Input.addEventListener('change', displayColor2Value);
 </script>
 
 
