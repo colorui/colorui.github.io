@@ -34,11 +34,8 @@ body{
 
 <div id="nav-container"></div>
 
-
-
-
 <div class="flex items-center justify-center">
-    <div class="mt-2 w-full h-full flex flex-col items-center justify-center space-y-6 p-0">
+    <div class="mt-4 w-full h-full flex flex-col items-center justify-center space-y-6 p-0">
         <div class="flex items-center justify-center gap-2">
             <input 
                 id="color1"
@@ -46,12 +43,23 @@ body{
                 placeholder="#f42454"
                 class="w-24 p-2 border border-gray-300 rounded shadow focus:outline-none focus:ring focus:ring-blue-300"
             >
+
+            <!-- Swap icon -->
+            <button 
+              id="swapColors" 
+              class="w-10 h-10   flex items-center justify-center bg-gray-700 text-white rounded-full shadow hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-300"
+              aria-label="Swap colors">
+            <span class="pb-1 inline-block text-lg">⇄</span> <!-- Left-right arrow icon -->
+           </button>
+
+
             <input 
                 id="color2"
                 type="text" 
                 placeholder="#fbbcdc"
                 class="w-24 p-2 border border-gray-300 rounded shadow focus:outline-none focus:ring focus:ring-blue-300"
             >
+
             <button 
                 id="applyGradient"
                 class="p-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
@@ -61,44 +69,62 @@ body{
             </button>
         </div>
 
-      <div class="flex justify-center mx-auto py-4">
-        <div id="shapesContainer" class="flex gap-2">
-            <!-- Geometric shapes will be added here -->
+        <div class="flex justify-center mx-auto pt-0">
+            <div id="gradientContainer" class="flex gap-2">
+                <!-- gradient will be rendered here -->
+            </div>
         </div>
-      </div>
     </div>
-
 </div>
-    <script>
-        const applyGradientButton = document.getElementById('applyGradient');
-        const color1Input = document.getElementById('color1');
-        const color2Input = document.getElementById('color2');
 
-        function generateGradient() {
-            shapesContainer.innerHTML = '';
+<script>
+    const applyGradientButton = document.getElementById('applyGradient');
+    const swapColorsButton = document.getElementById('swapColors');
+    const color1Input = document.getElementById('color1');
+    const color2Input = document.getElementById('color2');
+    const gradientContainer = document.getElementById('gradientContainer');
 
-            const shape = document.createElement('div');
-            shape.className = 'w-screen h-screen';
-            shapesContainer.appendChild(shape);
+    // Generate initial shape with gradient
+    function generateGradient() {
+        gradientContainer.innerHTML = '';
+
+        const shape = document.createElement('div');
+        shape.className = 'w-screen h-screen';
+        gradientContainer.appendChild(shape);
+    }
+
+    // Apply gradient colors to shapes
+    function applyGradient() {
+        const color1 = color1Input.value || '#f42454';
+        const color2 = color2Input.value || '#fbbcdc';
+        const shapes = gradientContainer.children;
+
+        for (const shape of shapes) {
+            shape.style.backgroundImage = `linear-gradient(to right, ${color1}, ${color2})`;
         }
+    }
 
-        // Apply gradient colors to shapes
-        function applyGradient() {
-            const color1 = color1Input.value || '#f42454';
-            const color2 = color2Input.value || '#fbbcdc';
-            const shapes = shapesContainer.children;
+    // Swap the gradient colors
+    function swapColors() {
+        const tempColor = color1Input.value;
+        color1Input.value = color2Input.value;
+        color2Input.value = tempColor;
 
-            for (const shape of shapes) {
-                shape.style.backgroundImage = `linear-gradient(to right, ${color1}, ${color2})`;
-            }
-        }
-        document.addEventListener("DOMContentLoaded", () => {  
-            generateGradient();
-            applyGradient();
-        });
+        // Update the gradient after swapping
+        applyGradient();
+    }
 
-        // Apply gradient when the button is clicked
-        applyGradientButton.addEventListener('click', applyGradient);
-    </script>
+    document.addEventListener("DOMContentLoaded", () => {  
+        generateGradient();
+        applyGradient();
+    });
+
+    // Event listeners
+    applyGradientButton.addEventListener('click', applyGradient);
+    swapColorsButton.addEventListener('click', swapColors);
+</script>
+
+
+
 </body>
 </html>
