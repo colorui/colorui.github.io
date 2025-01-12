@@ -27,10 +27,14 @@
                     imageContainer.appendChild(selectedImage);
                     colorValue.innerHTML = `<p class="bg-yellow-400 text-center text-lg italic h-[68px] mt-1 pt-1">Mouse over image to select color<br/> <span class="font-bold">Click</span> to <span class="font-bold">copy color</span> to <span class="font-bold">clipboard</span></p>`;
                     setupColorPicker();
+
+                    exportJson.classList.remove("hidden");
                 };
             };
 
             reader.readAsDataURL(file);
+        } else {
+          exportJson.classList.add("hidden");
         }
     }
 
@@ -208,7 +212,10 @@ function copyColorToClipboard() {
     document.body.removeChild(textArea);
 
     const colorBlock = createColorBlock(color);
-    choices.appendChild(colorBlock);
+     // Only append the color block if it is not undefined
+    if (colorBlock) {
+        choices.appendChild(colorBlock);
+    }
 
     imageColorCopiedMessage.innerHTML = `<div class="color-code-copied-to-clipboard"><p class="bg-[${color}] p-2"><span class="bg-white text-black p-1">${color}</span></p><p class="p-2 mt-1 bg-black text-white">copied to clipboard</p></div>`;
 
@@ -217,18 +224,29 @@ function copyColorToClipboard() {
     }, 2000);
 }
 
+
+
+
+let colorsSet = new Set(); // Use a Set to store unique colors
+
 function createColorBlock(color) {
+    // Check for duplicate colors
+    if (colorsSet.has(color)) {
+        alert('Color ' + color + ' has already been chosen.');
+        return; 
+    }
+
     const copiedMessage = document.getElementById('copiedMessage');
     const colorBlockContainer = document.getElementById('colorBlockContainer');
 
+    // Create a group to hold the color block and its hex code
     const colorBlockGroup = document.createElement('div');
-    colorBlockGroup.classList.add("flex", "items-center", "min-w-[135px]", "mr-2", "mb-2")
+    colorBlockGroup.classList.add("flex", "items-center", "min-w-[135px]", "mr-2", "mb-2");
 
     const colorBlock = document.createElement('div');
     colorBlock.style.width = '50px';
     colorBlock.style.height = '50px';
     colorBlock.style.backgroundColor = color;
-    // colorBlock.style.display = 'inline-block';
     colorBlock.style.marginRight = '10px';
     colorBlock.style.cursor = 'pointer';
 
@@ -236,29 +254,64 @@ function createColorBlock(color) {
     hexCode.textContent = color;
 
     colorBlock.addEventListener('click', function () {
-      const textArea = document.createElement('textarea');
-      textArea.value = color;
-      document.body.appendChild(textArea);
-      textArea.select();
-      
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(color);
-      } else{
-        document.execCommand('copy'); // FOR IOS
-      }
-      
-      document.body.removeChild(textArea);
+        const textArea = document.createElement('textarea');
+        textArea.value = color;
+        document.body.appendChild(textArea);
+        textArea.select();
 
-      copiedMessage.innerHTML = `<div class="color-code-copied-to-clipboard"><p class="bg-[${color}] p-2"><span class="bg-white text-black p-1">${color}</span></p><p class="p-2 mt-1 bg-black text-white">copied to clipboard</p></div>`;
-      setTimeout(() => {
-          copiedMessage.innerHTML = '';
-      }, 2000);
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(color);
+        } else {
+            document.execCommand('copy'); // FOR IOS
+        }
+
+        document.body.removeChild(textArea);
+
+        copiedMessage.innerHTML = `<div class="color-code-copied-to-clipboard"><p class="bg-[${color}] p-2"><span class="bg-white text-black p-1">${color}</span></p><p class="p-2 mt-1 bg-black text-white">copied to clipboard</p></div>`;
+        setTimeout(() => {
+            copiedMessage.innerHTML = '';
+        }, 2000);
     });
 
+    // Append the color block and its hex code to the group
     colorBlockGroup.appendChild(colorBlock);
     colorBlockGroup.appendChild(hexCode);
 
+    // Append the group to the container
     colorBlockContainer.appendChild(colorBlockGroup);
+
+    // Add the color to the Set to ensure it is unique
+    colorsSet.add(color);
 
     return colorBlockContainer;
 }
+
+
+
+
+// Export all colors to a JSON file
+const exportJson = document.getElementById('exportColorsBtn');
+exportJson.addEventListener('click', () => {
+    if (colorsSet.size === 0) {
+        alert('No colors to export.');
+        return;
+    }
+
+    // Convert Set to an array and stringify
+    const dataStr = JSON.stringify(Array.from(colorsSet), null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'colors.json';
+    a.click();
+    URL.revokeObjectURL(url);
+});
+
+
+
+
+
+
+
+
